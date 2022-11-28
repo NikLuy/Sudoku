@@ -1,0 +1,77 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:util="clr-namespace:Sudoku.Wpf.Utilities"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <util:IntToString x:Key="IntToStringConverter"/>
+    
+    <system:Double x:Key="FieldSize">150</system:Double>
+    <system:Double x:Key="SudokuSize">450</system:Double>
+
+
+    <Style x:Key="GameGridStyle"
+               TargetType="Grid">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Margin" Value="10,10,0,0" />
+        <Setter Property="Height" Value="{StaticResource SudokuSize}" />
+        <Setter Property="Width" Value="{StaticResource SudokuSize}" />
+        <Setter Property="Panel.ZIndex" Value="2" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsShowGameGrid, Mode=OneWay}" Value="True">
+                <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=IsShowGameGrid, Mode=OneWay}" Value="False">
+                <Setter Property="Visibility" Value="Hidden" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="BorderStyle"
+               TargetType="Border">
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+    <Style x:Key="MiniBorderStyle"
+               TargetType="Border"
+               BasedOn="{StaticResource BorderStyle}">
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Grid.ColumnSpan" Value="3" />
+        <Setter Property="Grid.RowSpan" Value="3" />
+        <Setter Property="Height" Value="{StaticResource FieldSize}" />
+        <Setter Property="Width" Value="{StaticResource FieldSize}" />
+    </Style>
+
+    <Style x:Key="MiniBorderBlueStyle"
+               TargetType="Border"
+               BasedOn="{StaticResource MiniBorderStyle}">
+        <!--<Setter Property="Background" Value="AliceBlue" />-->
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style x:Key="BarBaseStyle"
+               TargetType="Rectangle">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Stroke" Value="Gray" />
+    </Style>
+
+    <Style x:Key="HorizontalBars"
+               TargetType="Rectangle"
+               BasedOn="{StaticResource BarBaseStyle}">
+        <Setter Property="Grid.ColumnSpan" Value="3"/>
+        <Setter Property="Height" Value="1"/>
+        <Setter Property="Width" Value="{StaticResource FieldSize}" />
+    </Style>
+
+    <Style x:Key="VerticalBars"
+               TargetType="Rectangle"
+               BasedOn="{StaticResource BarBaseStyle}">
+        <Setter Property="Grid.RowSpan" Value="3"/>
+        <Setter Property="Height" Value="{StaticResource FieldSize}"/>
+        <Setter Property="Width" Value="1" />
+    </Style>
+</ResourceDictionary>
